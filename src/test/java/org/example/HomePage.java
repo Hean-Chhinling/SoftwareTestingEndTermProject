@@ -1,5 +1,6 @@
 package org.example;
 
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,13 +25,38 @@ public class HomePage {
     @FindBy(css = "#page-wrapper > div > div.col-lg-1 > div")
     private WebElement checkoutTotalPriceLabel;
 
+    @FindBy(css = "#tbodyid > h2")
+    private WebElement productTitle;
+
+    @FindBy(className = "card-title")
+    private WebElement homeProductName;
+
+    @FindBy(css = "#logInModal > div > div > div.modal-footer > button.btn.btn-primary")
+    private WebElement loginButton;
+
+    @FindBy(css = "#nameofuser")
+    private WebElement greetingMessageLabel;
+
+    @FindBy(css = "#navbarExample > ul > li:nth-child(2) > a")
+    private WebElement contactLink;
+
+    @FindBy(css = "#exampleModal > div > div > div.modal-footer > button.btn.btn-primary")
+    private WebElement sendMessageButton;
+
+    @FindBy(css = "#next2")
+    private WebElement nextPageButton;
+
     private static final Map<String, By> itemsLinks = Map.of(
             "Samsung galaxy s6", By.cssSelector("a[href='prod.html?idp_=1']"),
             "Nokia lumia 1520", By.cssSelector("a[href='prod.html?idp_=2']"),
             "Nexus 6", By.cssSelector("a[href='prod.html?idp_=3']"),
             "Samsung galaxy s7", By.cssSelector("a[href='prod.html?idp_=4']"),
             "Iphone 6 32gb", By.cssSelector("a[href='prod.html?idp_=5']"),
-            "Sony xperia z5", By.cssSelector("a[href='prod.html?idp_=6']")
+            "Sony xperia z5", By.cssSelector("a[href='prod.html?idp_=6']"),
+            "Sony vaio i5", By.cssSelector("a[href='prod.html?idp_=8']"),
+            "Sony vaio i7", By.cssSelector("a[href='prod.html?idp_=9']"),
+            "MacBook air", By.cssSelector("a[href='prod.html?idp_=11']"),
+            "Dell i7 8gb", By.cssSelector("a[href='prod.html?idp_=12']")
     );
 
     private static final Map<String, By> placeOrderTextFields = Map.of(
@@ -50,6 +76,12 @@ public class HomePage {
     private static final Map<String, By> signupTextFields = Map.of(
             "Username:", By.id("sign-username"),
             "Password:", By.id("sign-password")
+    );
+
+    private static final Map<String, By> contactTextFields = Map.of(
+            "Contact Email:", By.id("recipient-email"),
+            "Contact Name:", By.id("recipient-name"),
+            "Message:", By.id("message-text")
     );
 
     private static final Map<String, By> navigationButtons = Map.of(
@@ -90,6 +122,10 @@ public class HomePage {
     public void fillOutSignupTextFields(String field, String text){
         driver.findElement(signupTextFields.get(field)).sendKeys(text);
     }
+    
+    public void fillOutContactTextFields(String field, String text){
+        driver.findElement(contactTextFields.get(field)).sendKeys(text);
+    }
 
     public String getTotalPrice() throws InterruptedException {
         Thread.sleep(2000); // Short sleep to allow the total price to be loaded, despite the webpage already loaded
@@ -110,9 +146,35 @@ public class HomePage {
     }
 
 
+    public String getProductTitle() {
+        return productTitle.getText();
+    }
 
+    public String getHomeProductName() throws InterruptedException {
+        Thread.sleep(2000); // Add some delay for it to load the product name
+        return homeProductName.getText();
+    }
 
+    public void clickLoginButton() {
+        loginButton.click();
+    }
 
+    public void clickContactLink() {
+        contactLink.click();
+    }
 
+    public String getGreetingMessage() throws InterruptedException {
+        Thread.sleep(2000); // Add short sleep to allow username to be appeared
+        return greetingMessageLabel.getText();
+    }
 
+    public void clickSendMessageButton() {
+        sendMessageButton.click();
+    }
+
+    public void clickNextPageButton() throws InterruptedException {
+        Thread.sleep(2000); // Delay to make sure the next page button exist
+        nextPageButton.click();
+
+    }
 }

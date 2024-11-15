@@ -43,4 +43,21 @@ public class ShoppingStepDefinition extends AbstractStepDefinitions {
     public void theFieldIsFilled(String field, String value) {
         homePage.fillOutPlaceOrderTextFields(field, value);
     }
+
+    @Then("the product {string} is displayed")
+    public void theTitleIsDisplayed(String description) {
+        assertEquals(description, homePage.getProductTitle());
+    }
+
+
+    @Given("the next page button is clicked")
+    public void theNextPageButtonIsClicked() throws InterruptedException {
+        homePage.clickNextPageButton();
+    }
+
+    @Then("the home product {string} is displayed")
+    public void theHomeProductTitleIsDisplayed(String homeProductName) throws InterruptedException {
+        assertEquals(homeProductName, homePage.getHomeProductName());
+
+    }
 }

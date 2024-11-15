@@ -32,3 +32,17 @@ Feature: Demoblaze shopping
         | Samsung galaxy s7           | $800 *includes tax |
         | Iphone 6 32gb               | $790 *includes tax |
         | Sony xperia z5              | $320 *includes tax |
+
+    Scenario Outline: Checking the same product name is displayed in product detail page
+      Given the '<item>' link is clicked
+      Then the product '<title>' is displayed
+      Examples:
+        | item                  | title                   |
+        | Samsung galaxy s6     | Samsung galaxy s6       |
+        | Nokia lumia 1520      | Nokia lumia 1520        |
+        | Nexus 6               | Nexus 6                 |
+        | Samsung galaxy s7     | Samsung galaxy s7       |
+
+    Scenario: Checking the item title of the next page
+      Given the next page button is clicked
+      Then the home product 'Apple monitor 24' is displayed
