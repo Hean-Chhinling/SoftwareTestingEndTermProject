@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShoppingStepDefinition extends AbstractStepDefinitions {
 
@@ -59,5 +60,15 @@ public class ShoppingStepDefinition extends AbstractStepDefinitions {
     public void theHomeProductTitleIsDisplayed(String homeProductName) throws InterruptedException {
         assertEquals(homeProductName, homePage.getHomeProductName());
 
+    }
+
+    @And("the Nexus6 delete button is clicked")
+    public void theNexusDeleteButtonIsClicked() {
+        homePage.clickDeleteNexusItem();
+    }
+
+    @Then("the product description contains {string}")
+    public void theProductDescriptionContainsDescription(String expectedDescription) {
+        assertTrue(homePage.getProductDescription().contains(expectedDescription));
     }
 }

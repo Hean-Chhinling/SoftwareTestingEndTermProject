@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.w3c.dom.html.HTMLInputElement;
 
 import java.util.Map;
 
@@ -45,6 +46,21 @@ public class HomePage {
 
     @FindBy(css = "#next2")
     private WebElement nextPageButton;
+
+    @FindBy(css = "#tbodyid > tr:nth-child(2) > td:nth-child(4) > a")
+    private WebElement deleteNexusItem;
+
+    @FindBy(css = "#navbarExample > ul > li:nth-child(3) > a")
+    private WebElement aboutUs;
+
+    @FindBy(css = "#example-video > button > span.vjs-icon-placeholder")
+    private WebElement playVideo;
+
+    @FindBy(css = "#videoModal > div > div > div.modal-footer > button")
+    private WebElement closeVideo;
+
+    @FindBy(css = "#more-information > p")
+    private WebElement productDescription;
 
     private static final Map<String, By> itemsLinks = Map.of(
             "Samsung galaxy s6", By.cssSelector("a[href='prod.html?idp_=1']"),
@@ -88,6 +104,7 @@ public class HomePage {
             "Home", By.cssSelector("#navbarExample > ul > li.nav-item.active > a"),
             "Add to cart", By.cssSelector("#tbodyid > div.row > div > a"),
             "Log in", By.id("login2"),
+            "Log out", By.id("logout2"),
             "Sign up", By.id("signin2"),
             "Cart", By.id("cartur"),
             "Place Order", By.cssSelector("#page-wrapper > div > div.col-lg-1 > button"),
@@ -176,5 +193,25 @@ public class HomePage {
         Thread.sleep(2000); // Delay to make sure the next page button exist
         nextPageButton.click();
 
+    }
+
+    public void clickDeleteNexusItem() {
+        deleteNexusItem.click();
+    }
+
+    public void clickAboutUs() {
+        aboutUs.click();
+    }
+
+    public void clickPlayVideo() {
+        playVideo.click();
+    }
+
+    public void clickCloseVideo() {
+        closeVideo.click();
+    }
+
+    public String getProductDescription() {
+        return productDescription.getText();
     }
 }
