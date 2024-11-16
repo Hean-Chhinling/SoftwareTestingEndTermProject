@@ -87,11 +87,6 @@ public class HomePage {
             "Password:", By.id("loginpassword")
     );
 
-    private static final Map<String, By> signupTextFields = Map.of(
-            "Username:", By.id("sign-username"),
-            "Password:", By.id("sign-password")
-    );
-
     private static final Map<String, By> contactTextFields = Map.of(
             "Contact Email:", By.id("recipient-email"),
             "Contact Name:", By.id("recipient-name"),
@@ -132,10 +127,6 @@ public class HomePage {
 
     public void fillOutLoginTextFields(String field, String text){
         driver.findElement(loginTextFields.get(field)).sendKeys(text);
-    }
-
-    public void fillOutSignupTextFields(String field, String text){
-        driver.findElement(signupTextFields.get(field)).sendKeys(text);
     }
     
     public void fillOutContactTextFields(String field, String text){

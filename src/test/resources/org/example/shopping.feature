@@ -67,16 +67,17 @@ Feature: Demoblaze shopping
       And the Nexus6 delete button is clicked
       Then the price should read '820'
 
-      
+
 
     Scenario Outline: Check product description
       Given the '<item>' link is clicked
       Then the product description contains '<description>'
       Examples:
-        | item                  | description                                 |
-        | Samsung galaxy s7     | 1.6GHz octa-core it comes with 4GB of RAM   |
-        | Iphone 6 32gb         | Apple iPhone 6 packs a 8-megapixel          |
-        | Sony xperia z5        | resolution of 1080 pixels by 1920 pixels    |
+        | item                  | description                                                 |
+        | Samsung galaxy s7     | 1.6GHz octa-core it comes with 4GB of RAM                   |
+        | Iphone 6 32gb         | Apple iPhone 6 packs a 8-megapixel                          |
+        | Sony xperia z5        | resolution of 1080 pixels by 1920 pixels                    |
+        | Nokia lumia 1520      | 1520 is powered by 2.2GHz quad-core Qualcomm Snapdragon 800 |
 
 
 

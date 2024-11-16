@@ -14,6 +14,7 @@ Feature: Demoblaze login
         | admin             | admin         | Welcome admin   |
         | ling              | ling          | Welcome ling    |
         | chin              | chin          | Welcome chin    |
+        | long              | long          | Welcome long    |
 
     Scenario: validate log out functionality
       Given the 'Log in' button is clicked
