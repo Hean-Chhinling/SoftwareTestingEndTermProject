@@ -33,6 +33,9 @@ public class HomePage {
     @FindBy(css = "#logInModal > div > div > div.modal-footer > button.btn.btn-primary")
     private WebElement loginButton;
 
+    @FindBy(css = "#login2")
+    private WebElement loginLink;
+
     @FindBy(css = "#nameofuser")
     private WebElement greetingMessageLabel;
 
@@ -45,7 +48,7 @@ public class HomePage {
     @FindBy(css = "#next2")
     private WebElement nextPageButton;
 
-    @FindBy(css = "#tbodyid > tr:nth-child(2) > td:nth-child(4) > a")
+    @FindBy(xpath = "//tr[td[text()='Nexus 6']]/td/a[contains(@onclick, 'deleteItem')]")
     private WebElement deleteNexusItem;
 
     @FindBy(css = "#navbarExample > ul > li:nth-child(3) > a")
@@ -59,6 +62,9 @@ public class HomePage {
 
     @FindBy(css = "#more-information > p")
     private WebElement productDescription;
+
+    @FindBy(css = "#example-video > div.vjs-poster")
+    private WebElement guidanceVideo;
 
     private static final Map<String, By> itemsLinks = Map.of(
             "Samsung galaxy s6", By.cssSelector("a[href='prod.html?idp_=1']"),
@@ -202,5 +208,15 @@ public class HomePage {
 
     public String getProductDescription() {
         return productDescription.getText();
+    }
+
+    public boolean isGuidanceVideoExist() throws InterruptedException {
+        Thread.sleep(2000);
+        return guidanceVideo.isDisplayed();
+    }
+
+    public boolean isLogInLinkExisted() throws InterruptedException {
+        Thread.sleep(2000);
+        return loginLink.isDisplayed();
     }
 }

@@ -22,4 +22,13 @@ public class LoginStepDefinition extends AbstractStepDefinitions{
     public void theLogInFields(String field, String value) {
         homePage.fillOutLoginTextFields(field, value);
     }
+
+    @Then("the log in button is present")
+    public void theLogInButtonIsPresent() throws InterruptedException {
+        if (homePage.isLogInLinkExisted()){
+            System.out.println("The log in button is present");
+        } else {
+            throw new AssertionError("The log in button is not present");
+        }
+    }
 }

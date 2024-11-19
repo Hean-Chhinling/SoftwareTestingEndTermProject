@@ -18,8 +18,10 @@ Feature: Demoblaze login
 
     Scenario: validate log out functionality
       Given the 'Log in' button is clicked
-      And the log in 'Username:' field is filled with 'Ling'
-      And the log in 'Password:' field is filled with 'Ling'
+      And the log in 'Username:' field is filled with 'ling'
+      And the log in 'Password:' field is filled with 'ling'
       And the confirmation log in button is clicked
+      Then the user is welcome with 'Welcome ling'
       And the 'Log out' button is clicked
+      Then the log in button is present
 
