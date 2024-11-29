@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginStepDefinition extends AbstractStepDefinitions{
 
-    @And("the confirmation log in button is clicked")
-    public void theConfirmationLogInButtonIsClicked() {
-        homePage.clickLoginButton();
-        // homePage.acceptAlert();
-    }
 
     @Then("the user is welcome with {string}")
     public void theUserIsWelcomeWithGreeting(String greeting) throws InterruptedException {

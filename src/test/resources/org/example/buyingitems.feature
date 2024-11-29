@@ -27,5 +27,5 @@ Feature: Demoblaze buying items
     And the 'Nexus 6' item is clicked
     And the 'Add to cart' add to cart button is clicked
     And the 'Cart' button is clicked
-    And the Nexus6 delete button is clicked
+    And the 'Delete Nexus Item' button is clicked
     Then the price should read '820'

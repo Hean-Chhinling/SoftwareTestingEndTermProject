@@ -7,7 +7,7 @@ Feature: Demoblaze login
       Given the 'Log in' button is clicked
       And the log in 'Username:' field is filled with '<username>'
       And the log in 'Password:' field is filled with '<password>'
-      And the confirmation log in button is clicked
+      And the 'Pop up Login' button is clicked
       Then the user is welcome with '<greeting>'
       Examples:
         | username          | password      | greeting        |
@@ -20,7 +20,7 @@ Feature: Demoblaze login
       Given the 'Log in' button is clicked
       And the log in 'Username:' field is filled with 'ling'
       And the log in 'Password:' field is filled with 'ling'
-      And the confirmation log in button is clicked
+      And the 'Pop up Login' button is clicked
       Then the user is welcome with 'Welcome ling'
       And the 'Log out' button is clicked
       Then the log in button is present

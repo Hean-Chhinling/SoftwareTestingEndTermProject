@@ -18,20 +18,20 @@ public class HomePage {
         this.driver = driver;
     }
 
+    @FindBy(css = "#tbodyid > h2")
+    private WebElement productTitle;
+
     @FindBy(css = "#tbodyid > h3")
     private WebElement itemPriceLabel;
+
+    @FindBy(css = "#more-information > p")
+    private WebElement productDescription;
 
     @FindBy(css = "#page-wrapper > div > div.col-lg-1 > div")
     private WebElement checkoutTotalPriceLabel;
 
-    @FindBy(css = "#tbodyid > h2")
-    private WebElement productTitle;
-
     @FindBy(className = "card-title")
     private WebElement homeProductName;
-
-    @FindBy(css = "#logInModal > div > div > div.modal-footer > button.btn.btn-primary")
-    private WebElement loginButton;
 
     @FindBy(css = "#login2")
     private WebElement loginLink;
@@ -39,32 +39,16 @@ public class HomePage {
     @FindBy(css = "#nameofuser")
     private WebElement greetingMessageLabel;
 
-    @FindBy(css = "#navbarExample > ul > li:nth-child(2) > a")
-    private WebElement contactLink;
-
-    @FindBy(css = "#exampleModal > div > div > div.modal-footer > button.btn.btn-primary")
-    private WebElement sendMessageButton;
-
     @FindBy(css = "#next2")
     private WebElement nextPageButton;
 
-    @FindBy(xpath = "//tr[td[text()='Nexus 6']]/td/a[contains(@onclick, 'deleteItem')]")
-    private WebElement deleteNexusItem;
-
-    @FindBy(css = "#navbarExample > ul > li:nth-child(3) > a")
-    private WebElement aboutUs;
-
-    @FindBy(css = "#example-video > button > span.vjs-icon-placeholder")
-    private WebElement playVideo;
-
-    @FindBy(css = "#videoModal > div > div > div.modal-footer > button")
-    private WebElement closeVideo;
-
-    @FindBy(css = "#more-information > p")
-    private WebElement productDescription;
-
     @FindBy(css = "#example-video > div.vjs-poster")
     private WebElement guidanceVideo;
+
+    private static final Map<String, By> menuLinks = Map.of(
+            "Contact Link", By.cssSelector("#navbarExample > ul > li:nth-child(2) > a"),
+            "About Us", By.cssSelector("#navbarExample > ul > li:nth-child(3) > a")
+    );
 
     private static final Map<String, By> itemsLinks = Map.of(
             "Samsung galaxy s6", By.cssSelector("a[href='prod.html?idp_=1']"),
@@ -99,15 +83,20 @@ public class HomePage {
             "Message:", By.id("message-text")
     );
 
-    private static final Map<String, By> navigationButtons = Map.of(
-            "Home", By.cssSelector("#navbarExample > ul > li.nav-item.active > a"),
-            "Add to cart", By.cssSelector("#tbodyid > div.row > div > a"),
-            "Log in", By.id("login2"),
-            "Log out", By.id("logout2"),
-            "Sign up", By.id("signin2"),
-            "Cart", By.id("cartur"),
-            "Place Order", By.cssSelector("#page-wrapper > div > div.col-lg-1 > button"),
-            "Purchase", By.cssSelector("#orderModal > div > div > div.modal-footer > button.btn.btn-primary")
+
+    private static final Map<String, By> buttons = Map.ofEntries(
+            Map.entry("Home", By.cssSelector("#navbarExample > ul > li.nav-item.active > a")),
+            Map.entry("Add to cart", By.cssSelector("#tbodyid > div.row > div > a")),
+            Map.entry("Log in", By.id("login2")),
+            Map.entry("Log out", By.id("logout2")),
+            Map.entry("Sign up", By.id("signin2")),
+            Map.entry("Cart", By.id("cartur")),
+            Map.entry("Place Order", By.cssSelector("#page-wrapper > div > div.col-lg-1 > button")),
+            Map.entry("Purchase", By.cssSelector("#orderModal > div > div > div.modal-footer > button.btn.btn-primary")),
+            Map.entry("Send Message", By.cssSelector("#exampleModal > div > div > div.modal-footer > button.btn.btn-primary")),
+            Map.entry("Delete Nexus Item", By.xpath("//tr[td[text()='Nexus 6']]/td/a[contains(@onclick, 'deleteItem')]")),
+            Map.entry("Close Video", By.cssSelector("#videoModal > div > div > div.modal-footer > button")),
+            Map.entry("Pop up Login", By.cssSelector("#logInModal > div > div > div.modal-footer > button.btn.btn-primary"))
     );
 
     public void openPage(){
@@ -119,8 +108,12 @@ public class HomePage {
         driver.quit();
     }
 
-    public void clickNavigationButton(String button){
-        driver.findElement(navigationButtons.get(button)).click();
+    public void clickButton(String buttonName){
+        driver.findElement(buttons.get(buttonName)).click();
+    }
+
+    public void clickMenuLink(String menuName){
+        driver.findElement(menuLinks.get(menuName)).click();
     }
 
     public void clickItemLink(String item){
@@ -144,9 +137,6 @@ public class HomePage {
         return checkoutTotalPriceLabel.getText();
     }
 
-    public String getItemPrice(){
-        return itemPriceLabel.getText();
-    }
 
     public void acceptAlert() {
         try {
@@ -157,9 +147,16 @@ public class HomePage {
         }
     }
 
+    public String getItemPrice(){
+        return itemPriceLabel.getText();
+    }
 
     public String getProductTitle() {
         return productTitle.getText();
+    }
+
+    public String getProductDescription() {
+        return productDescription.getText();
     }
 
     public String getHomeProductName() throws InterruptedException {
@@ -167,47 +164,16 @@ public class HomePage {
         return homeProductName.getText();
     }
 
-    public void clickLoginButton() {
-        loginButton.click();
-    }
-
-    public void clickContactLink() {
-        contactLink.click();
-    }
-
     public String getGreetingMessage() throws InterruptedException {
         Thread.sleep(2000); // Add short sleep to allow username to be appeared
         return greetingMessageLabel.getText();
     }
 
-    public void clickSendMessageButton() {
-        sendMessageButton.click();
-    }
 
     public void clickNextPageButton() throws InterruptedException {
         Thread.sleep(2000); // Delay to make sure the next page button exist
         nextPageButton.click();
 
-    }
-
-    public void clickDeleteNexusItem() {
-        deleteNexusItem.click();
-    }
-
-    public void clickAboutUs() {
-        aboutUs.click();
-    }
-
-    public void clickPlayVideo() {
-        playVideo.click();
-    }
-
-    public void clickCloseVideo() {
-        closeVideo.click();
-    }
-
-    public String getProductDescription() {
-        return productDescription.getText();
     }
 
     public boolean isGuidanceVideoExist() throws InterruptedException {
@@ -219,4 +185,5 @@ public class HomePage {
         Thread.sleep(2000);
         return loginLink.isDisplayed();
     }
+
 }

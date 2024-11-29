@@ -26,14 +26,10 @@ public class ShoppingStepDefinition extends AbstractStepDefinitions {
 
     @And("the {string} add to cart button is clicked")
     public void theAddToCartButtonIsClicked(String button) {
-        homePage.clickNavigationButton(button);
+        homePage.clickButton(button);
         homePage.acceptAlert();
     }
 
-    @And("the {string} button is clicked")
-    public void theButtonIsClicked(String button) {
-        homePage.clickNavigationButton(button);
-    }
 
     @And("the price should read {string}")
     public void thePriceShouldRead(String price) throws InterruptedException {
@@ -62,10 +58,6 @@ public class ShoppingStepDefinition extends AbstractStepDefinitions {
 
     }
 
-    @And("the Nexus6 delete button is clicked")
-    public void theNexusDeleteButtonIsClicked() {
-        homePage.clickDeleteNexusItem();
-    }
 
     @Then("the product description contains {string}")
     public void theProductDescriptionContainsDescription(String expectedDescription) {
